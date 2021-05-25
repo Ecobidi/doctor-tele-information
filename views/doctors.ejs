@@ -1,0 +1,61 @@
+<%- include ('partials/top') %>
+
+    <div class="row space pb-0 mb-4 px-2 border-bottom">
+      <div class="col-12 d-flex justify-content-between align-items-center underline pb-2">
+        <h3 class="title">Doctors</h3>
+        <div>
+          <a href="/doctors/new" class="btn btn-success">Add Doctor</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row px-2">
+      <div class="col-12">
+        <form id="search-form" method="GET" action="/doctors?" class="form-inline">
+          <div class="form-group mb-4">
+            <input required type="text" name="search" id="search-box" class="form-control" placeholder="Search by doctor name...">
+            <button type="submit" class="btn btn-success">Search</button>
+          </div>
+        </form>
+        <h5 class="font-weight-normal text-center text-white bg-primary p-2 m-0 table-top">List of Doctors</h5>
+        <table class="table table-bordered table-striped">
+          <thead class="font-weight-normal">
+            <tr>
+              <td>Photo</td>
+              <td>Full Name</td>
+              <td>Specialization</td>
+              <td>Hospital</td>
+              <td>Work Address</td>
+              <td>Mobile Phone</td>
+              <td>Email</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% doctors.forEach((m) => { %>
+              <tr>
+                <td>
+                  <div style="width: 65px; height: 65px;">
+                    <img src='<%= domain + "/images/" + m.photo %>' class="img rounded-circle">
+                  </div>
+                </td>
+                <td><%= m.surname + ' ' + m.other_names %></td>
+                <td><%= m.specialization %></td>
+                <td><%= m.hospital %></td>
+                <td><%= m.work_address %></td>
+                <td><%= m.phone %></td>
+                <td><%= m.email %></td>
+                <td>
+                  <a href='<%= "/doctors/remove/" + m._id %>' class="btn btn-sm btn-danger">Remove</a>
+                </td>
+              </tr>
+            <% }) %>          
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+</div> 
+
+<%- include ('partials/bottom') %>
